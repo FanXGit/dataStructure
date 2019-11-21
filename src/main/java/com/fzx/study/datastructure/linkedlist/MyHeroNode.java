@@ -1,0 +1,23 @@
+package com.fzx.study.datastructure.linkedlist;
+
+public class MyHeroNode {
+    public int no;
+    public String name;
+    public String nickName;
+    public MyHeroNode next;
+
+    public MyHeroNode(int no, String name, String nickName) {
+        this.no = no;
+        this.name = name;
+        this.nickName = nickName;
+    }
+
+    @Override
+    public String toString() {
+        return "MyHeroNode{" +
+                "no=" + no +
+                ", name='" + name + '\'' +
+                ", nickName='" + nickName + '\'' +
+                '}';
+    }
+}
