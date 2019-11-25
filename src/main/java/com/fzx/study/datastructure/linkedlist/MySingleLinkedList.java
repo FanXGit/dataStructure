@@ -96,4 +96,30 @@ public class MySingleLinkedList {
 
         }
     }
+
+    /**
+     * 4.3.1)、求单链表中有效节点的个数
+     * 4.3.2)、查找单链表中倒数第K个节点（新浪面试题）
+     * 4.3.3)、单链表的反转（腾讯面试题）
+     * 4.4.4)、从尾到头打印单链表（百度）
+     * 4.4.5) 合并两个有序的单链表，合并之后的链表依然有序(课后练习）
+     */
+
+    public int getLinkedListNodeSize() {
+        int size = 0;
+        MyHeroNode temp=head;
+        while (true){
+            if (temp.next !=null){
+                size++;
+                temp=temp.next;
+            }else {
+                break;
+            }
+        }
+        return size;
+    }
+
+    public MyHeroNode getHead() {
+        return head;
+    }
 }
