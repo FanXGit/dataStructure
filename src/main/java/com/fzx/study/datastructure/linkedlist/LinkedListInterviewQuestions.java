@@ -100,7 +100,6 @@ public class LinkedListInterviewQuestions {
             temp = temp.next;
         }
         temp.next = big.next;
-
         return mergerNode;
     }
 }
