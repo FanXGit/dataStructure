@@ -183,7 +183,7 @@ class DoubleCircleSingleLinkedList {
                 doubleBoy.setPre(cuiDouBoy);
                 cuiDouBoy.setNext(doubleBoy);
                 first.setPre(doubleBoy);
-                cuiDouBoy=doubleBoy;
+                cuiDouBoy = doubleBoy;
             }
         }
     }
@@ -215,21 +215,16 @@ class DoubleCircleSingleLinkedList {
      */
 
     public void countBoy(int startNo, int countNum, int nums) {
-
-
         // 先对数据进行校验
         if (first == null || startNo < 1 || startNo > nums) {
             System.out.println("参数输入有误， 请重新输入");
             return;
         }
-
-
         for (int i = 0; i < startNo - 1; i++) {
             first = first.getNext();
         }
-
         while (true) {
-            if (first== first.getNext()) {
+            if (first == first.getNext()) {
                 System.out.println(first.getNo() + "完毕");
                 break;
             }
@@ -239,11 +234,9 @@ class DoubleCircleSingleLinkedList {
             System.out.println(first.getNo() + "号出局");
             first.getPre().setNext(first.getNext());
             first.getNext().setPre(first.getPre());
-
             first = first.getNext();
             showBoy();
         }
         System.out.println("圈里最后剩" + first.getNo() + "");
-
     }
 }
