@@ -1,10 +1,12 @@
 package com.fzx.study.datastructure.Thread;
 
+import java.time.temporal.TemporalAdjusters;
+
 public class DeadLockDemo {
     private static Object resource1 = new Object(); //resource1
     private static Object resource2 = new Object(); //resource2
 
-    private static Person p1=new Person();
+    private static Person p1 = new Person();
 
 
     public static void main(String[] args) {
@@ -41,18 +43,23 @@ public class DeadLockDemo {
 //        },"线程2").start();
 
 
-        new Thread(()->{
+        new Thread(() -> {
             System.out.println(Thread.currentThread() + " thread 1 start");
             p1.say();
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println(Thread.currentThread() + " thread 1 end");
-        },"线程1").start();
+        }, "线程1").start();
 
 
-        new Thread(()->{
+        new Thread(() -> {
             System.out.println(Thread.currentThread() + " thread 2 start");
             p1.see();
 
             System.out.println(Thread.currentThread() + " thread 2 end");
-        },"线程2").start();
+        }, "线程2").start();
     }
 }

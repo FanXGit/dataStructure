@@ -1,5 +1,7 @@
 package com.fzx.study.datastructure.Thread;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Person {
 
     public  synchronized void say(){
@@ -12,6 +14,8 @@ public class Person {
         }
 
         see();
+       // ReentrantLock
+        ReentrantLock rs=new ReentrantLock(true);
     }
 
 
