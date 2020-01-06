@@ -1,6 +1,6 @@
 package com.fzx.study.datastructure.stack;
 
-import java.util.Iterator;
+
 import java.util.Stack;
 
 public class MyLinkedStack {
@@ -104,5 +104,8 @@ class MyLinkedStackList {
 
         myLinkedStackList.list();
 
+
+        Stack stack =new Stack();
+        stack.peek();
     }
 }
