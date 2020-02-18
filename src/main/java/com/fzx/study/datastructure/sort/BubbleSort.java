@@ -1,45 +1,114 @@
 package com.fzx.study.datastructure.sort;
 
-/**
- * <p>Title: BubbleSort </p>
- * <p>Description: å†’æ³¡æ’åº   ä¸ä¼˜åŒ–åçš„å†’æ³¡æ’åº</p>
- *
- * @author Fzx
- * @version 1.0
- * @date 2020/2/2 0002 ä¸‹åˆ 9:48
- */
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
 public class BubbleSort {
 
-    public static void main(String[] args) {
-        int arr[] = {3, 11, 8, -2, 2, -99};
-        basicBubbleSort(arr);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + "\t");
-        }
-    }
+	public static void main(String[] args) {
+//		int arr[] = {3, 9, -1, 10, 20};
+//		
+//		System.out.println("ÅÅĞòÇ°");
+//		System.out.println(Arrays.toString(arr));
+		
+		//ÎªÁËÈİÁ¿Àí½â£¬ÎÒÃÇ°ÑÃ°ÅİÅÅĞòµÄÑİ±ä¹ı³Ì£¬¸ø´ó¼ÒÕ¹Ê¾
+		
+		//²âÊÔÒ»ÏÂÃ°ÅİÅÅĞòµÄËÙ¶ÈO(n^2), ¸ø80000¸öÊı¾İ£¬²âÊÔ
+		//´´½¨Òª¸ø80000¸öµÄËæ»úµÄÊı×é
+		int[] arr = new int[80000];
+		for(int i =0; i < 80000;i++) {
+			arr[i] = (int)(Math.random() * 8000000); //Éú³ÉÒ»¸ö[0, 8000000) Êı
+		}
+		
+		Date data1 = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date1Str = simpleDateFormat.format(data1);
+		System.out.println("ÅÅĞòÇ°µÄÊ±¼äÊÇ=" + date1Str);
+		
+		//²âÊÔÃ°ÅİÅÅĞò
+		bubbleSort(arr);
+		
+		Date data2 = new Date();
+		String date2Str = simpleDateFormat.format(data2);
+		System.out.println("ÅÅĞòºóµÄÊ±¼äÊÇ=" + date2Str);
+
+		//System.out.println("ÅÅĞòºó");
+		//System.out.println(Arrays.toString(arr));
 
 
-    public static void basicBubbleSort(int[] arr) {
-        boolean flag = false;
+		/*
 
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = 0; j < arr.length - 1 - i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    flag = true;
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
+		// µÚ¶şÌËÅÅĞò£¬¾ÍÊÇ½«µÚ¶ş´óµÄÊıÅÅÔÚµ¹ÊıµÚ¶şÎ»
 
-            if (!flag) {
-                break;
-            } else {
-                flag = false;
-            }
+		for (int j = 0; j < arr.length - 1 - 1 ; j++) {
+			// Èç¹ûÇ°ÃæµÄÊı±ÈºóÃæµÄÊı´ó£¬Ôò½»»»
+			if (arr[j] > arr[j + 1]) {
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
 
-        }
-    }
+		System.out.println("µÚ¶şÌËÅÅĞòºóµÄÊı×é");
+		System.out.println(Arrays.toString(arr));
 
+
+		// µÚÈıÌËÅÅĞò£¬¾ÍÊÇ½«µÚÈı´óµÄÊıÅÅÔÚµ¹ÊıµÚÈıÎ»
+
+		for (int j = 0; j < arr.length - 1 - 2; j++) {
+			// Èç¹ûÇ°ÃæµÄÊı±ÈºóÃæµÄÊı´ó£¬Ôò½»»»
+			if (arr[j] > arr[j + 1]) {
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+
+		System.out.println("µÚÈıÌËÅÅĞòºóµÄÊı×é");
+		System.out.println(Arrays.toString(arr));
+
+		// µÚËÄÌËÅÅĞò£¬¾ÍÊÇ½«µÚ4´óµÄÊıÅÅÔÚµ¹ÊıµÚ4Î»
+
+		for (int j = 0; j < arr.length - 1 - 3; j++) {
+			// Èç¹ûÇ°ÃæµÄÊı±ÈºóÃæµÄÊı´ó£¬Ôò½»»»
+			if (arr[j] > arr[j + 1]) {
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+
+		System.out.println("µÚËÄÌËÅÅĞòºóµÄÊı×é");
+		System.out.println(Arrays.toString(arr)); */
+
+	}
+	
+	// ½«Ç°Ãæ¶îÃ°ÅİÅÅĞòËã·¨£¬·â×°³ÉÒ»¸ö·½·¨
+	public static void bubbleSort(int[] arr) {
+		// Ã°ÅİÅÅĞò µÄÊ±¼ä¸´ÔÓ¶È O(n^2), ×Ô¼ºĞ´³ö
+		int temp = 0; // ÁÙÊ±±äÁ¿
+		boolean flag = false; // ±êÊ¶±äÁ¿£¬±íÊ¾ÊÇ·ñ½øĞĞ¹ı½»»»
+		for (int i = 0; i < arr.length - 1; i++) {
+
+			for (int j = 0; j < arr.length - 1 - i; j++) {
+				// Èç¹ûÇ°ÃæµÄÊı±ÈºóÃæµÄÊı´ó£¬Ôò½»»»
+				if (arr[j] > arr[j + 1]) {
+					flag = true;
+					temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+			//System.out.println("µÚ" + (i + 1) + "ÌËÅÅĞòºóµÄÊı×é");
+			//System.out.println(Arrays.toString(arr));
+
+			if (!flag) { // ÔÚÒ»ÌËÅÅĞòÖĞ£¬Ò»´Î½»»»¶¼Ã»ÓĞ·¢Éú¹ı
+				break;
+			} else {
+				flag = false; // ÖØÖÃflag!!!, ½øĞĞÏÂ´ÎÅĞ¶Ï
+			}
+		}
+	}
 
 }

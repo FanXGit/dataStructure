@@ -1,69 +1,132 @@
 package com.fzx.study.datastructure.sort;
 
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-/**
- * <p>Title: SheelSort</p>
- * <p>Description: </p>
- * <p>Company: moxin</p>
- *
- * @author Fzx
- * @version 1.0
- * @date 2020/2/4 0004 ä¸‹åˆ 2:29
- */
 public class ShellSort {
 
-    public static void main(String[] args) {
-        int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
-        shellSort(arr);
-        System.out.println(Arrays.toString(arr));
-        System.out.println();
-        int[] arr1 = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
-        shellSort2(arr1);
-        System.out.println(Arrays.toString(arr1));
-    }
+	public static void main(String[] args) {
+		//int[] arr = { 8, 9, 1, 7, 2, 3, 5, 4, 6, 0 };
+		
+		// ´´½¨Òª¸ø80000¸öµÄËæ»úµÄÊı×é
+		int[] arr = new int[8000000];
+		for (int i = 0; i < 8000000; i++) {
+			arr[i] = (int) (Math.random() * 8000000); // Éú³ÉÒ»¸ö[0, 8000000) Êı
+		}
 
+		System.out.println("ÅÅĞòÇ°");
+		Date data1 = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date1Str = simpleDateFormat.format(data1);
+		System.out.println("ÅÅĞòÇ°µÄÊ±¼äÊÇ=" + date1Str);
+		
+		//shellSort(arr); //½»»»Ê½
+		shellSort2(arr);//ÒÆÎ»·½Ê½
+		
+		Date data2 = new Date();
+		String date2Str = simpleDateFormat.format(data2);
+		System.out.println("ÅÅĞòÇ°µÄÊ±¼äÊÇ=" + date2Str);
+		
+		//System.out.println(Arrays.toString(arr));
+	}
 
-    public static void shellSort(int arr[]) {
-        int temp = 0;
-        int count = 0;
-        // æ ¹æ®å‰é¢çš„é€æ­¥åˆ†æï¼Œä½¿ç”¨å¾ªç¯å¤„ç†
-        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
-            for (int i = gap; i < arr.length; i++) {
-                // éå†å„ç»„ä¸­æ‰€æœ‰çš„å…ƒç´ (å…±gapç»„ï¼Œæ¯ç»„æœ‰ä¸ªå…ƒç´ ), æ­¥é•¿gap
-                for (int j = i - gap; j >= 0; j -= gap) {
-                    // å¦‚æœå½“å‰å…ƒç´ å¤§äºåŠ ä¸Šæ­¥é•¿åçš„é‚£ä¸ªå…ƒç´ ï¼Œè¯´æ˜äº¤æ¢
-                    if (arr[j] > arr[j + gap]) {
-                        temp = arr[j];
-                        arr[j] = arr[j + gap];
-                        arr[j + gap] = temp;
-                    }
-                }
-            }
-            System.out.println("å¸Œå°”æ’åºç¬¬" + (++count) + "è½® =" + Arrays.toString(arr));
-        }
-    }
+	// Ê¹ÓÃÖğ²½ÍÆµ¼µÄ·½Ê½À´±àĞ´Ï£¶ûÅÅĞò
+	// Ï£¶ûÅÅĞòÊ±£¬ ¶ÔÓĞĞòĞòÁĞÔÚ²åÈëÊ±²ÉÓÃ½»»»·¨, 
+	// Ë¼Â·(Ëã·¨) ===> ´úÂë
+	public static void shellSort(int[] arr) {
+		
+		int temp = 0;
+		int count = 0;
+		// ¸ù¾İÇ°ÃæµÄÖğ²½·ÖÎö£¬Ê¹ÓÃÑ­»·´¦Àí
+		for (int gap = arr.length / 2; gap > 0; gap /= 2) {
+			for (int i = gap; i < arr.length; i++) {
+				// ±éÀú¸÷×éÖĞËùÓĞµÄÔªËØ(¹²gap×é£¬Ã¿×éÓĞ¸öÔªËØ), ²½³¤gap
+				for (int j = i - gap; j >= 0; j -= gap) {
+					// Èç¹ûµ±Ç°ÔªËØ´óÓÚ¼ÓÉÏ²½³¤ºóµÄÄÇ¸öÔªËØ£¬ËµÃ÷½»»»
+					if (arr[j] > arr[j + gap]) {
+						temp = arr[j];
+						arr[j] = arr[j + gap];
+						arr[j + gap] = temp;
+					}
+				}
+			}
+			//System.out.println("Ï£¶ûÅÅĞòµÚ" + (++count) + "ÂÖ =" + Arrays.toString(arr));
+		}
+		
+		/*
+		
+		// Ï£¶ûÅÅĞòµÄµÚ1ÂÖÅÅĞò
+		// ÒòÎªµÚ1ÂÖÅÅĞò£¬ÊÇ½«10¸öÊı¾İ·Ö³ÉÁË 5×é
+		for (int i = 5; i < arr.length; i++) {
+			// ±éÀú¸÷×éÖĞËùÓĞµÄÔªËØ(¹²5×é£¬Ã¿×éÓĞ2¸öÔªËØ), ²½³¤5
+			for (int j = i - 5; j >= 0; j -= 5) {
+				// Èç¹ûµ±Ç°ÔªËØ´óÓÚ¼ÓÉÏ²½³¤ºóµÄÄÇ¸öÔªËØ£¬ËµÃ÷½»»»
+				if (arr[j] > arr[j + 5]) {
+					temp = arr[j];
+					arr[j] = arr[j + 5];
+					arr[j + 5] = temp;
+				}
+			}
+		}
+		
+		System.out.println("Ï£¶ûÅÅĞò1ÂÖºó=" + Arrays.toString(arr));//
+		
+		
+		// Ï£¶ûÅÅĞòµÄµÚ2ÂÖÅÅĞò
+		// ÒòÎªµÚ2ÂÖÅÅĞò£¬ÊÇ½«10¸öÊı¾İ·Ö³ÉÁË 5/2 = 2×é
+		for (int i = 2; i < arr.length; i++) {
+			// ±éÀú¸÷×éÖĞËùÓĞµÄÔªËØ(¹²5×é£¬Ã¿×éÓĞ2¸öÔªËØ), ²½³¤5
+			for (int j = i - 2; j >= 0; j -= 2) {
+				// Èç¹ûµ±Ç°ÔªËØ´óÓÚ¼ÓÉÏ²½³¤ºóµÄÄÇ¸öÔªËØ£¬ËµÃ÷½»»»
+				if (arr[j] > arr[j + 2]) {
+					temp = arr[j];
+					arr[j] = arr[j + 2];
+					arr[j + 2] = temp;
+				}
+			}
+		}
 
-    public static void shellSort2(int arr[]) {
-        int temp = 0;
-        int count = 0;
-        // æ ¹æ®å‰é¢çš„é€æ­¥åˆ†æï¼Œä½¿ç”¨å¾ªç¯å¤„ç†
-        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
-            for (int i = gap; i < arr.length; i++) {
-                // éå†å„ç»„ä¸­æ‰€æœ‰çš„å…ƒç´ (å…±gapç»„ï¼Œæ¯ç»„æœ‰ä¸ªå…ƒç´ ), æ­¥é•¿gap
-                int j = i;
-                temp = arr[i];
-                if (arr[i] < arr[j - gap]) {
-                    while (j - gap >= 0 && temp < arr[j - gap]) {
-                        arr[j] = arr[j - gap];
-                        j -= gap;
-                    }
-                }
-                if (j != i) {
-                    arr[j] = temp;
-                }
-            }
-            System.out.println("å¸Œå°”æ’åºç¬¬" + (++count) + "è½® =" + Arrays.toString(arr));
-        }
-    }
+		System.out.println("Ï£¶ûÅÅĞò2ÂÖºó=" + Arrays.toString(arr));//
+
+		// Ï£¶ûÅÅĞòµÄµÚ3ÂÖÅÅĞò
+		// ÒòÎªµÚ3ÂÖÅÅĞò£¬ÊÇ½«10¸öÊı¾İ·Ö³ÉÁË 2/2 = 1×é
+		for (int i = 1; i < arr.length; i++) {
+			// ±éÀú¸÷×éÖĞËùÓĞµÄÔªËØ(¹²5×é£¬Ã¿×éÓĞ2¸öÔªËØ), ²½³¤5
+			for (int j = i - 1; j >= 0; j -= 1) {
+				// Èç¹ûµ±Ç°ÔªËØ´óÓÚ¼ÓÉÏ²½³¤ºóµÄÄÇ¸öÔªËØ£¬ËµÃ÷½»»»
+				if (arr[j] > arr[j + 1]) {
+					temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+
+		System.out.println("Ï£¶ûÅÅĞò3ÂÖºó=" + Arrays.toString(arr));//
+		*/
+	}
+	
+	//¶Ô½»»»Ê½µÄÏ£¶ûÅÅĞò½øĞĞÓÅ»¯->ÒÆÎ»·¨
+	public static void shellSort2(int[] arr) {
+		
+		// ÔöÁ¿gap, ²¢Öğ²½µÄËõĞ¡ÔöÁ¿
+		for (int gap = arr.length / 2; gap > 0; gap /= 2) {
+			// ´ÓµÚgap¸öÔªËØ£¬Öğ¸ö¶ÔÆäËùÔÚµÄ×é½øĞĞÖ±½Ó²åÈëÅÅĞò
+			for (int i = gap; i < arr.length; i++) {
+				int j = i;
+				int temp = arr[j];
+				if (arr[j] < arr[j - gap]) {
+					while (j - gap >= 0 && temp < arr[j - gap]) {
+						//ÒÆ¶¯
+						arr[j] = arr[j-gap];
+						j -= gap;
+					}
+					//µ±ÍË³öwhileºó£¬¾Í¸øtempÕÒµ½²åÈëµÄÎ»ÖÃ
+					arr[j] = temp;
+				}
+
+			}
+		}
+	}
+
 }
