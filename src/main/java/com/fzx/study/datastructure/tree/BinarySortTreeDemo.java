@@ -1,4 +1,4 @@
-package com.fzx.study.datastructure.binarysorttree;
+package com.fzx.study.datastructure.tree;
 
 /**
  * <p>Title: BinarySortTreeDemo</p>
@@ -24,7 +24,6 @@ public class BinarySortTreeDemo {
         root.setRight(node3);
         node3.setLeft(node4);
         node3.setRight(node5);
-
         binaryTree.setRoot(root);
         binaryTree.preOrder();
 

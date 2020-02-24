@@ -1,6 +1,4 @@
-package com.fzx.study.datastructure.Thread;
-
-import java.time.temporal.TemporalAdjusters;
+package com.fzx.study.datastructure.thread;
 
 public class DeadLockDemo {
     private static Object resource1 = new Object(); //resource1

@@ -1,4 +1,4 @@
-package com.fzx.study.datastructure.hashTab;
+package com.fzx.study.datastructure.hashtab;
 
 /**
  * <p>Title: Emp</p>

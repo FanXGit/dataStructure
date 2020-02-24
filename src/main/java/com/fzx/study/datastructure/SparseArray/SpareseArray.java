@@ -1,4 +1,4 @@
-package com.fzx.study.datastructure.SparseArray;
+package com.fzx.study.datastructure.sparsearray;
 
 import java.util.HashMap;
 import java.util.Iterator;

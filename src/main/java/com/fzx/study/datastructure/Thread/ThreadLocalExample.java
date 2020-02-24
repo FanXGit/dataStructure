@@ -1,4 +1,4 @@
-package com.fzx.study.datastructure.Thread;
+package com.fzx.study.datastructure.thread;
 
 import java.text.SimpleDateFormat;
 import java.util.Random;
