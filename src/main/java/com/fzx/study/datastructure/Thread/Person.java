@@ -1,4 +1,4 @@
-package com.fzx.study.datastructure.thread;
+package com.fzx.study.datastructure.Thread;
 
 import java.util.concurrent.locks.ReentrantLock;
 

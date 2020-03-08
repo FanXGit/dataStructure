@@ -1,4 +1,4 @@
-package com.fzx.study.datastructure.thread;
+package com.fzx.study.datastructure.Thread;
 
 public class DeadLockDemo {
     private static Object resource1 = new Object(); //resource1
