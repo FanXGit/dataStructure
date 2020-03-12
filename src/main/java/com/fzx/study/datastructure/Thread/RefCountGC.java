@@ -15,6 +15,7 @@ public class RefCountGC {
         objectA = null;
         objectB = null;
 
+
       //  HashSet
        // ArrayList;
         System.gc();
